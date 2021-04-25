@@ -36,7 +36,6 @@ for uri in uris:
         soup = BeautifulSoup(track['trLink'], 'html.parser')
         most_played_tracks.append(soup.text)
 
-most_played_tracks.sort()
 print(*most_played_tracks, sep='\n')
 
 # compare with owned tracks

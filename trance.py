@@ -33,7 +33,7 @@ for i in soup.select(".iBlock > a"):
     tracks.append(i.text)
 
 # compare with owned tracks
-with open('current.txt') as f:
+with open('current.txt', encoding='utf-8') as f:
     curr = [line.strip() for line in f]
 
 for t in tracks:
