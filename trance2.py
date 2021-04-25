@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from fuzzywuzzy import fuzz
 
-
 uris = ['/ajax/getmostplayedtracks.php?mode=2&id=2&page=1&idMusicStyle=3&param=4w',
         '/ajax/getmostplayedtracks.php?mode=2&id=2&page=2&idMusicStyle=3&param=4w',
         '/ajax/getmostplayedtracks.php?mode=2&id=2&page=3&idMusicStyle=3&param=4w',
@@ -41,7 +40,7 @@ most_played_tracks.sort()
 print(*most_played_tracks, sep='\n')
 
 # compare with owned tracks
-with open('current.txt') as f:
+with open('current.txt', encoding='utf-8') as f:
     curr = [line.strip() for line in f]
 
 for t in most_played_tracks:
