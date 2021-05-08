@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from fuzzywuzzy import fuzz
+from pathlib import Path
 
 uris = ['/ajax/getmostplayedtracks.php?mode=2&id=2&page=1&idMusicStyle=3&param=4w',
         '/ajax/getmostplayedtracks.php?mode=2&id=2&page=2&idMusicStyle=3&param=4w',
@@ -38,9 +39,7 @@ for uri in uris:
 
 print(*most_played_tracks, sep='\n')
 
-# compare with owned tracks
-with open('current.txt', encoding='utf-8') as f:
-    curr = [line.strip() for line in f]
+curr = [p.stem for p in Path(r'C:\Users\Jefferson\Desktop\trance').glob('*.mp3')]
 
 for t in most_played_tracks:
     for c in curr:
