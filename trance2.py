@@ -3,10 +3,10 @@ from bs4 import BeautifulSoup
 from fuzzywuzzy import fuzz
 from pathlib import Path
 
-uris = ['/ajax/getmostplayedtracks.php?mode=2&id=2&page=1&idMusicStyle=3&param=4w',
-        '/ajax/getmostplayedtracks.php?mode=2&id=2&page=2&idMusicStyle=3&param=4w',
-        '/ajax/getmostplayedtracks.php?mode=2&id=2&page=3&idMusicStyle=3&param=4w',
-        '/ajax/getmostplayedtracks.php?mode=2&id=2&page=4&idMusicStyle=3&param=4w']
+uris = ['/ajax/getmostplayedtracks.php?mode=2&id=2&param=4w&idGenre=3&showRank=true&page=1',
+        '/ajax/getmostplayedtracks.php?mode=2&id=2&param=4w&idGenre=3&showRank=true&page=2',
+        '/ajax/getmostplayedtracks.php?mode=2&id=2&param=4w&idGenre=3&showRank=true&page=3',
+        '/ajax/getmostplayedtracks.php?mode=2&id=2&param=4w&idGenre=3&showRank=true&page=4']
 
 headers = {
     'authority': 'www.1001tracklists.com',
@@ -34,8 +34,8 @@ for uri in uris:
     data = response.json()
     tracks = data['data']
     for track in tracks:
-        soup = BeautifulSoup(track['trLink'], 'html.parser')
-        most_played_tracks.append(soup.text)
+        soup = BeautifulSoup(track, 'html.parser')
+        most_played_tracks.append(soup.select_one('a.spR').text)
 
 print(*most_played_tracks, sep='\n')
 
