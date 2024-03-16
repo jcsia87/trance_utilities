@@ -3,10 +3,10 @@ from bs4 import BeautifulSoup
 
 
 uris = [
-    "/ajax/getmostplayedtracks.php?mode=2&id=2&page=1&idGenre=3&showRank=true&param=2023",
-    "/ajax/getmostplayedtracks.php?mode=2&id=2&page=2&idGenre=3&showRank=true&param=2023",
-    "/ajax/getmostplayedtracks.php?mode=2&id=2&page=3&idGenre=3&showRank=true&param=2023",
-    "/ajax/getmostplayedtracks.php?mode=2&id=2&page=4&idGenre=3&showRank=true&param=2023",
+    "/ajax/getmostplayedtracks.php?mode=2&id=2&page=1&idGenre=3&showRank=true&param=3m",
+    "/ajax/getmostplayedtracks.php?mode=2&id=2&page=2&idGenre=3&showRank=true&param=3m",
+    "/ajax/getmostplayedtracks.php?mode=2&id=2&page=3&idGenre=3&showRank=true&param=3m",
+    "/ajax/getmostplayedtracks.php?mode=2&id=2&page=4&idGenre=3&showRank=true&param=3m",
 ]
 
 
@@ -18,6 +18,6 @@ for uri in uris:
     tracks = data["data"]
     for track in tracks:
         soup = BeautifulSoup(track, "html.parser")
-        most_played_tracks.append(soup.select_one("a.spR").text)
+        most_played_tracks.append(soup.select_one("a").text)
 
 print(*most_played_tracks, sep="\n")
